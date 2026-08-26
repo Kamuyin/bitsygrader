@@ -1,0 +1,90 @@
+site_name: BYTEGrader
+site_description: Autograding for JupyterHub with LTI 1.3 integration
+site_url: https://kamuyin.github.io/bytegrader/
+repo_url: https://github.com/Kamuyin/bytegrader
+repo_name: Kamuyin/bytegrader
+edit_uri: edit/master/docs/
+
+theme:
+  name: material
+  favicon: assets/bytegrader_favicon.png
+  features:
+    - content.code.copy
+    - content.tabs.link
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.share
+    - search.suggest
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+nav:
+  - Home: index.md
+  - User documentation:
+      - Overview: user/index.md
+      - Installation: user/installation.md
+      - LMS integrations:
+          - Overview: user/lms/index.md
+          - Moodle: user/lms/moodle.md
+      - Teaching with BYTEGrader:
+          - Instructor workflow: user/instructors.md
+          - Authoring notebooks: user/authoring-notebooks.md
+      - Student workflow: user/students.md
+      - Running BYTEGrader:
+          - Configuration: user/configuration.md
+          - LMS integration: user/administration/lti.md
+          - Autograding: user/administration/autograding.md
+          - Operations: user/administration/operations.md
+          - Troubleshooting: user/troubleshooting.md
+  - Developer documentation:
+      - Overview and setup: developer/index.md
+      - Architecture: developer/architecture.md
+      - Codebase guide: developer/project-structure.md
+      - HTTP API: developer/api.md
+      - Data model: developer/data-model.md
+      - Testing and releases: developer/testing-and-releases.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+extra_css:
+  - stylesheets/extra.css
+
+strict: true

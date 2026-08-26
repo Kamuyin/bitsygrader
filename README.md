@@ -137,6 +137,24 @@ WIP, currently broken.
 jlpm build
 ```
 
+### Documentation
+
+The documentation site uses MkDocs Material and is published to GitHub Pages.
+
+```bash
+uv pip install -r docs/requirements.txt
+uv run mkdocs serve
+```
+
+Validate documentation changes before pushing:
+
+```bash
+uv run mkdocs build --strict
+```
+
+The source is in [`docs/`](docs/) and the site configuration is in
+[`mkdocs.yml`](mkdocs.yml).
+
 ## Project Structure
 
 ```
@@ -161,7 +179,7 @@ bytegrader/
 │   └── widgets/            # JupyterLab widgets
 ├── docker/                 # Docker configurations
 ├── tests/                  # Test suite (TBD)
-└── docs/                   # Documentation (TBD)
+└── docs/                   # MkDocs documentation
 ```
 
 ## License

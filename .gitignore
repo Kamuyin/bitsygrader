@@ -102,6 +102,9 @@ testenv/
 
 .venv/
 
+# MkDocs build output
+site/
+
 # Docker secrets
 .env
 docker/keys/*.pem
