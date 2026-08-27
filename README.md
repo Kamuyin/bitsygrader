@@ -3,6 +3,7 @@
 BYTE Grader is an autograding service designed for educational environments. It integrates with JupyterHub and Learning Management Systems through LTI 1.3, providing automated grading capabilities for Jupyter notebooks with support for custom test cases and modular execution environments. It's inspired of [nbgrader](https://github.com/jupyter/nbgrader) which is great but lacks support of LMS synchronization and isolated execution environments for the autograding.
 
 [Documentation](https://kamuyin.github.io/bytegrader/)
+**[Installation Instructions](https://kamuyin.github.io/bytegrader/user/installation/)**
 
 ## Overview
 
