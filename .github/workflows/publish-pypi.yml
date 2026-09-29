@@ -12,7 +12,7 @@ jobs:
 
     environment:
       name: pypi
-      url: https://pypi.org/p/bytegrader
+      url: https://pypi.org/p/bitsygrader
 
     permissions:
       id-token: write

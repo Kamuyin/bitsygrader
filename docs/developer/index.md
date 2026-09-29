@@ -1,6 +1,6 @@
 # Developer documentation
 
-This section is for contributors changing BYTEGrader's Python service, Jupyter extensions, execution backends, data model, or documentation.
+This section is for contributors changing BitsyGrader's Python service, Jupyter extensions, execution backends, data model, or documentation.
 
 ## Prerequisites
 
@@ -16,7 +16,7 @@ uv sync --group dev
 corepack enable
 jlpm install
 uv pip install -e .
-jupyter server extension enable bytegrader --sys-prefix
+jupyter server extension enable bitsygrader --sys-prefix
 jupyter labextension develop . --overwrite
 ```
 
@@ -39,7 +39,7 @@ Restart JupyterLab after changing Python server-extension code. TypeScript chang
 Use the example configuration as a starting point, replace its credentials, and export the JupyterHub service variables described in [Installation](../user/installation.md).
 
 ```bash
-uv run bytegrader serve --config example/bytegrader_config.py
+uv run bitsygrader serve --config example/bitsygrader_config.py
 ```
 
 The example simple executor is intentionally unsafe and should only process notebooks you trust.

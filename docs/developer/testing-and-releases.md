@@ -8,7 +8,7 @@ Pytest is configured with unit, integration, contract, API, security, performanc
 
 ```bash
 uv run pytest
-uv run python -m compileall -q bytegrader executors/systemd/bytegrader_systemd
+uv run python -m compileall -q bitsygrader executors/systemd/bitsygrader_systemd
 jlpm build:lib
 uv run mkdocs build --strict
 ```
@@ -25,14 +25,16 @@ High-value test areas are:
 
 ## Release artifacts
 
-The root package produces the `bytegrader` Python distribution and bundled JupyterLab extension. Tags matching `v*` trigger the PyPI publishing workflow.
+The root package produces the `bitsygrader` Python distribution and bundled `@bytechallenge/bitsygrader` JupyterLab extension. It installs both `bitsygrader` and `bgrader` commands. Tags matching `v*` trigger the PyPI publishing workflow.
 
-The systemd executor is a separate workspace package under `executors/systemd`; tags matching `systemd-v*` publish it independently.
+The `bitsygrader-executor-systemd` distribution is a separate workspace package under `executors/systemd`, with the import namespace `bitsygrader_systemd`; tags matching `systemd-v*` publish it independently.
+
+Before publishing under the new name, configure the PyPI projects and their trusted publishers for these distribution names. Repository and documentation links target `Kamuyin/bitsygrader` and `https://kamuyin.github.io/bitsygrader/`; the GitHub repository and Pages settings must use those names as well. Existing installations should follow the [upgrade instructions](../user/administration/operations.md#upgrading-to-the-renamed-package).
 
 Keep these versions aligned where relevant:
 
 - `pyproject.toml` for the Python package;
-- `bytegrader.__version__`;
+- `bitsygrader.__version__`;
 - `package.json` for the frontend;
 - `executors/systemd/pyproject.toml` for the executor;
 - `uv.lock` after workspace metadata changes.

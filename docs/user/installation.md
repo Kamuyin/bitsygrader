@@ -1,6 +1,6 @@
-# Install BYTEGrader
+# Install BitsyGrader
 
-This guide installs BYTEGrader and JupyterHub on a Linux server.
+This guide installs BitsyGrader and JupyterHub on a Linux server.
 
 After this guide succeeds, continue with [LMS integrations](lms/index.md).
 
@@ -11,11 +11,11 @@ The examples use these paths and addresses:
 | Component | Example |
 | --- | --- |
 | Public JupyterHub URL | `https://jupyter.example.org` |
-| Internal BYTEGrader service | `http://127.0.0.1:10101` |
+| Internal BitsyGrader service | `http://127.0.0.1:10101` |
 | JupyterHub configuration | `/etc/jupyterhub/jupyterhub_config.py` |
-| BYTEGrader configuration | `/etc/bytegrader/bytegrader_config.py` |
+| BitsyGrader configuration | `/etc/bitsygrader/bitsygrader_config.py` |
 | JupyterHub working directory | `/var/jupyterhub` |
-| BYTEGrader data | `/var/lib/bytegrader` |
+| BitsyGrader data | `/var/lib/bitsygrader` |
 
 The setup uses SystemdSpawner to run each JupyterLab server in a transient systemd unit. JupyterHub must therefore run as `root`; unrestricted access to `systemd-run` is effectively equivalent to root access. SystemdSpawner recommends systemd 245 or newer.
 
@@ -65,13 +65,13 @@ uv pip install \
   --system
 ```
 
-## 2. Install BYTEGrader
+## 2. Install BitsyGrader
 
 Install the current project from its repository:
 
 ```bash
-git clone https://github.com/Kamuyin/bytegrader.git
-cd bytegrader
+git clone https://github.com/Kamuyin/bitsygrader.git
+cd bitsygrader
 corepack enable
 uv pip install . --system
 ```
@@ -79,7 +79,7 @@ uv pip install . --system
 Enable the Jupyter Server and JupyterLab extensions in the environment used by the user servers:
 
 ```bash
-jupyter server extension enable bytegrader --sys-prefix
+jupyter server extension enable bitsygrader --sys-prefix
 jupyter server extension list
 jupyter labextension list
 ```
@@ -88,42 +88,42 @@ jupyter labextension list
 
 ```bash
 install -d -m 700 /etc/jupyterhub
-install -d -m 700 /etc/bytegrader
+install -d -m 700 /etc/bitsygrader
 install -d -m 700 /var/jupyterhub
-install -d -m 700 /var/lib/bytegrader
-install -d -m 700 /var/lib/bytegrader/assets
+install -d -m 700 /var/lib/bitsygrader
+install -d -m 700 /var/lib/bitsygrader/assets
 ```
 
-Create `/etc/bytegrader/bytegrader_config.py`:
+Create `/etc/bitsygrader/bitsygrader_config.py`:
 
 ```python
 from traitlets.config import get_config
 
-from bytegrader.config.config import AutogradeConfig, DatabaseConfig
+from bitsygrader.config.config import AutogradeConfig, DatabaseConfig
 
 c = get_config()
 
 database = DatabaseConfig()
-database.uri = "sqlite:////var/lib/bytegrader/bytegrader.db"
-database.asset_path = "/var/lib/bytegrader/assets"
-c.BYTEGraderConfig.database = database
+database.uri = "sqlite:////var/lib/bitsygrader/bitsygrader.db"
+database.asset_path = "/var/lib/bitsygrader/assets"
+c.BitsyGraderConfig.database = database
 
 autograde = AutogradeConfig()
 autograde.enabled = True
 autograde.workers = 4
 autograde.executor_class = (
-    "bytegrader.autograde.executors.simple.SimpleExecutor"
+    "bitsygrader.autograde.executors.simple.SimpleExecutor"
 )
-c.BYTEGraderConfig.autograde = autograde
+c.BitsyGraderConfig.autograde = autograde
 ```
 
 ```bash
-chmod 600 /etc/bytegrader/bytegrader_config.py
+chmod 600 /etc/bitsygrader/bitsygrader_config.py
 ```
 
 !!! danger "Choose a safe executor"
 
-    `SimpleExecutor` executes submissions inside the BYTEGrader service process. It is suitable only for trusted development input. Configure an isolated [autograding executor](administration/autograding.md) before accepting student code.
+    `SimpleExecutor` executes submissions inside the BitsyGrader service process. It is suitable only for trusted development input. Configure an isolated [autograding executor](administration/autograding.md) before accepting student code.
 
 The [configuration guide](configuration.md) documents database, executor, environment, and observability settings.
 
@@ -164,23 +164,23 @@ c.SystemdSpawner.unit_extra_properties = {
 
     An [open SystemdSpawner issue](https://github.com/jupyterhub/systemdspawner/issues/76) documents stale state below `/run` that can prevent a stopped user server from starting again. `RuntimeDirectoryPreserve=no` is a reported workaround.
 
-### Register BYTEGrader as a managed service
+### Register BitsyGrader as a managed service
 
 Append this to the same JupyterHub configuration:
 
 ```python
 c.JupyterHub.services = [
     {
-        "name": "bytegrader",
+        "name": "bitsygrader",
         "url": "http://127.0.0.1:10101",
         "command": [
             sys.executable,
             "-m",
-            "bytegrader",
+            "bitsygrader",
             "serve",
-            "--config=/etc/bytegrader/bytegrader_config.py",
+            "--config=/etc/bitsygrader/bitsygrader_config.py",
         ],
-        "cwd": "/var/lib/bytegrader",
+        "cwd": "/var/lib/bitsygrader",
     }
 ]
 
@@ -189,7 +189,7 @@ c.JupyterHub.load_roles = [
         "name": "user",
         "scopes": [
             "self",
-            "access:services!service=bytegrader",
+            "access:services!service=bitsygrader",
             "read:users:name!user",
             "read:users:groups!user",
             "access:servers!user",
@@ -202,19 +202,19 @@ c.JupyterHub.load_roles = [
             "read:users:activity!user",
             "users:activity!user",
             "admin:auth_state!user",
-            "access:services!service=bytegrader",
+            "access:services!service=bitsygrader",
         ],
     },
     {
-        "name": "bytegrader-role",
+        "name": "bitsygrader-role",
         "scopes": [
             "read:users:name",
             "admin:auth_state",
-            "access:services!service=bytegrader",
+            "access:services!service=bitsygrader",
             "read:users",
             "list:users",
         ],
-        "services": ["bytegrader"],
+        "services": ["bitsygrader"],
     },
 ]
 ```
@@ -302,10 +302,10 @@ systemctl status jupyterhub.service
 Before connecting an LMS, verify that:
 
 1. JupyterHub starts without configuration errors.
-2. BYTEGrader appears as a running managed service in the Hub logs.
+2. BitsyGrader appears as a running managed service in the Hub logs.
 3. A test user server starts successfully.
 4. The **BYTE Grader** menu appears in JupyterLab.
-5. `jupyter server extension list` reports the BYTEGrader extension as enabled.
+5. `jupyter server extension list` reports the BitsyGrader extension as enabled.
 
 Useful diagnostic commands:
 
@@ -319,7 +319,7 @@ jupyter labextension list
 
 ## Next step
 
-Choose an [LMS integration guide](lms/index.md). It will add the platform-specific authenticator configuration and BYTEGrader LTI endpoints to the base configuration created here.
+Choose an [LMS integration guide](lms/index.md). It will add the platform-specific authenticator configuration and BitsyGrader LTI endpoints to the base configuration created here.
 
 ## Further reading
 

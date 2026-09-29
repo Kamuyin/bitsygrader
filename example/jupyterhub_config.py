@@ -27,7 +27,7 @@ c.Application.log_level = "DEBUG"
 
 c.JupyterHub.services = [
     {
-        "name": "bytegrader",
+        "name": "bitsygrader",
         "api_token": "1442555d6d82d96fc8a69776f19978e442873859c6a003f7be15e61d669e2e1c",
         "url": "http://127.0.0.1:10101",
     }
@@ -38,7 +38,7 @@ c.JupyterHub.load_roles = [
         "name": "user",
         "scopes": [
             "self",
-            "access:services!service=bytegrader",
+            "access:services!service=bitsygrader",
             "read:users:name!user",
             "read:users:groups!user",
             "access:servers!user",
@@ -52,18 +52,18 @@ c.JupyterHub.load_roles = [
             "read:users:activity!user",
             "users:activity!user",
             "admin:auth_state!user",
-            "access:services!service=bytegrader",
+            "access:services!service=bitsygrader",
         ],
     },
     {
-        "name": "bytegrader-role",
+        "name": "bitsygrader-role",
         "scopes": [
             "read:users:name",
             "admin:auth_state",
-            "access:services!service=bytegrader",
+            "access:services!service=bitsygrader",
             "read:users",
             "list:users",
         ],
-        "services": ["bytegrader"],
+        "services": ["bitsygrader"],
     },
 ]

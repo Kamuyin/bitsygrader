@@ -1,5 +1,5 @@
 # =============================================================================
-# JupyterHub Configuration for BYTEGrader
+# JupyterHub Configuration for BitsyGrader
 # Configured for LTI authentication and Docker spawning
 # =============================================================================
 
@@ -96,7 +96,7 @@ else:
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
 
 # Docker network - must match the docker-compose network
-c.DockerSpawner.network_name = os.environ.get('DOCKER_NETWORK_NAME', 'bytegrader-network')
+c.DockerSpawner.network_name = os.environ.get('DOCKER_NETWORK_NAME', 'bitsygrader-network')
 
 # Use internal Docker network IP
 c.DockerSpawner.use_internal_ip = True
@@ -121,7 +121,7 @@ c.DockerSpawner.volumes = {
 
 # Environment variables for spawned containers
 c.DockerSpawner.environment = {
-    'BYTEGRADER_SERVICE_URL': os.environ.get('BYTEGRADER_SERVICE_URL', 'http://bytegrader:12345'),
+    'BITSYGRADER_SERVICE_URL': os.environ.get('BITSYGRADER_SERVICE_URL', 'http://bitsygrader:12345'),
     'GRANT_SUDO': 'no',
 }
 
@@ -133,24 +133,24 @@ c.DockerSpawner.environment = {
 c.DockerSpawner.debug = True
 
 # =============================================================================
-# BYTEGrader Service Configuration
+# BitsyGrader Service Configuration
 # =============================================================================
 
-bytegrader_service_url = os.environ.get('BYTEGRADER_SERVICE_URL', 'http://bytegrader:12345')
-bytegrader_api_token = os.environ.get('BYTEGRADER_SERVICE_TOKEN', '')
+bitsygrader_service_url = os.environ.get('BITSYGRADER_SERVICE_URL', 'http://bitsygrader:12345')
+bitsygrader_api_token = os.environ.get('BITSYGRADER_SERVICE_TOKEN', '')
 
 c.JupyterHub.services = [
     {
-        'name': 'bytegrader',
-        'url': bytegrader_service_url,
-        'api_token': bytegrader_api_token,
+        'name': 'bitsygrader',
+        'url': bitsygrader_service_url,
+        'api_token': bitsygrader_api_token,
     }
 ]
 
 # Service tokens
-if bytegrader_api_token:
+if bitsygrader_api_token:
     c.JupyterHub.service_tokens = {
-        bytegrader_api_token: 'bytegrader'
+        bitsygrader_api_token: 'bitsygrader'
     }
 
 # =============================================================================

@@ -1,6 +1,6 @@
 # LTI 1.3 integration
 
-BYTEGrader implements the service-side parts of LTI Advantage. JupyterHub’s LTI authenticator remains responsible for validating launches and establishing the user session.
+BitsyGrader implements the service-side parts of LTI Advantage. JupyterHub’s LTI authenticator remains responsible for validating launches and establishing the user session.
 
 ## Required endpoints and credentials
 
@@ -17,7 +17,7 @@ The OAuth token request asks for line-item, result, score, and context-membershi
 
 ## Roster synchronization
 
-When the scheduled task is enabled, BYTEGrader:
+When the scheduled task is enabled, BitsyGrader:
 
 1. selects active local courses;
 2. requests the NRPS membership list for each course’s LTI ID;
@@ -34,6 +34,6 @@ The synchronization interval accepts a number followed by `m`, `h`, or `d`, such
 
 ## Assignments and grades
 
-With assignment-level LTI synchronization enabled, creation adds an AGS line item and stores its remote ID. After grading, BYTEGrader computes the achieved score from local cell grades, scales it to the remote maximum when necessary, and submits it for the user’s LMS identifier.
+With assignment-level LTI synchronization enabled, creation adds an AGS line item and stores its remote ID. After grading, BitsyGrader computes the achieved score from local cell grades, scales it to the remote maximum when necessary, and submits it for the user’s LMS identifier.
 
 An LTI grade failure is logged and captured by observability backends, but it does not roll back the locally stored grade.

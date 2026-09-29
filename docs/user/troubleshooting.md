@@ -27,7 +27,7 @@ For database errors, verify the SQLAlchemy URI, connectivity, credentials, and s
 
 ## Fetch succeeds but files are missing
 
-BYTEGrader matches files by stored relative filename and writes them below the course/assignment directory. Check the Jupyter Server process working directory and permissions. Filenames rejected by path sanitization are logged and skipped.
+BitsyGrader matches files by stored relative filename and writes them below the course/assignment directory. Check the Jupyter Server process working directory and permissions. Filenames rejected by path sanitization are logged and skipped.
 
 When fetching solutions, existing local solution files are not overwritten.
 

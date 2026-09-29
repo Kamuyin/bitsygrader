@@ -12,7 +12,7 @@ jobs:
 
     environment:
       name: pypi
-      url: https://pypi.org/p/bytegrader-executor-systemd
+      url: https://pypi.org/p/bitsygrader-executor-systemd
 
     permissions:
       id-token: write

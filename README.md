@@ -1,14 +1,14 @@
-# BYTEGrader
+# BitsyGrader
 
-BYTE Grader is an autograding service designed for educational environments. It integrates with JupyterHub and Learning Management Systems through LTI 1.3, providing automated grading capabilities for Jupyter notebooks with support for custom test cases and modular execution environments. It's inspired of [nbgrader](https://github.com/jupyter/nbgrader) which is great but lacks support of LMS synchronization and isolated execution environments for the autograding.
+BitsyGrader is an autograding service designed for educational environments. It integrates with JupyterHub and Learning Management Systems through LTI 1.3, providing automated grading capabilities for Jupyter notebooks with support for custom test cases and modular execution environments. It's inspired of [nbgrader](https://github.com/jupyter/nbgrader) which is great but lacks support of LMS synchronization and isolated execution environments for the autograding.
 
-[Documentation](https://kamuyin.github.io/bytegrader/)
+[Documentation](https://kamuyin.github.io/bitsygrader/)
 
-**[Installation Instructions](https://kamuyin.github.io/bytegrader/user/installation/)**
+**[Installation Instructions](https://kamuyin.github.io/bitsygrader/user/installation/)**
 
 ## Overview
 
-BYTEGrader consists of two main components:
+BitsyGrader consists of two main components:
 
 - **Backend Service**: A Tornado application that provides RESTful APIs for managing courses, assignments, and submissions with automated grading capabilities
 - **JupyterLab Extension**: A TypeScript/React frontend that extends JupyterLab with an interface for instructors and students
@@ -81,15 +81,15 @@ uv sync
 uv pip install -e .
 ```
 
-2. Set up BYTEGrader configuration
-    Please see [example/bytegrader_config.py](example/bytegrader_config.py) for an example configuration.
+2. Set up BitsyGrader configuration
+    Please see [example/bitsygrader_config.py](example/bitsygrader_config.py) for an example configuration.
 
 3. Add the service to JupyterHub (managed or external)
 
 ```python
 c.JupyterHub.services = [
     {
-        "name": "bytegrader",
+        "name": "bitsygrader",
         "api_token": "1442555d6d82d96fc8a69776f19978e442873859c6a003f7be15e61d669e2e1c", # generate via `openssl rand -hex 32`
         "url": "http://127.0.0.1:10101",
     }
@@ -99,13 +99,13 @@ c.JupyterHub.services = [
 4. Start the service
 
 ```bash
-export JUPYTERHUB_SERVICE_PREFIX="/services/bytegrader/"
+export JUPYTERHUB_SERVICE_PREFIX="/services/bitsygrader/"
 export JUPYTERHUB_API_TOKEN="1442555d6d82d96fc8a69776f19978e442873859c6a003f7be15e61d669e2e1c"
 export JUPYTERHUB_API_URL="http://127.0.0.1:8000/hub/api"
-export JUPYTERHUB_SERVICE_NAME="bytegrader"
+export JUPYTERHUB_SERVICE_NAME="bitsygrader"
 export JUPYTERHUB_SERVICE_URL="http://0.0.0.0:10101"
-export BYTEGRADER_LOG_LEVEL="DEBUG"
-bytegrader serve --config bytegrader_config.py
+export BITSYGRADER_LOG_LEVEL="DEBUG"
+bitsygrader serve --config bitsygrader_config.py
 ```
 
 ### Docker Deployment
@@ -117,7 +117,7 @@ WIP, currently broken.
 ### For Instructors
 
 1. **Create a Course**: Navigate to the Courses panel in JupyterLab
-2. **Create Assignment Notebooks:**: Notebooks must be created via the `nbgrader` extension. BYTE Grader is compatible with nbgrader's notebooks format.
+2. **Create Assignment Notebooks:**: Notebooks must be created via the `nbgrader` extension. BitsyGrader is compatible with nbgrader's notebooks format.
 3. **Create an Assignment**: Use the assignment wizard to configure:
    - Notebook and asset files to include
    - Due dates and late policies
@@ -162,8 +162,8 @@ The source is in [`docs/`](docs/) and the site configuration is in
 ## Project Structure
 
 ```
-bytegrader/
-├── bytegrader/              # Python backend
+bitsygrader/
+├── bitsygrader/              # Python backend
 │   ├── autograde/          # Grading queue and workers
 │   ├── cli/                # Command-line interface
 │   ├── config/             # Configuration system
@@ -194,4 +194,4 @@ This project is licensed under the BSD 3-Clause License. See the LICENSE file fo
 
 Developed as part of the BYTE Challenge initiative to enhance computer science education for students.
 
-BYTE Grader builds upon the work of the [nbgrader](https://github.com/jupyter/nbgrader) project. The core project architecture, notebook format, preprocessor patterns, and notebook manipulation strategies were inspired by nbgrader's approach. I am grateful to the nbgrader team for providing their software as open source. Without them this project would have never existed.
+BitsyGrader builds upon the work of the [nbgrader](https://github.com/jupyter/nbgrader) project. The core project architecture, notebook format, preprocessor patterns, and notebook manipulation strategies were inspired by nbgrader's approach. I am grateful to the nbgrader team for providing their software as open source. Without them this project would have never existed.

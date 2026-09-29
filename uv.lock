@@ -9,8 +9,8 @@ resolution-markers = [
 
 [manifest]
 members = [
-    "bytegrader",
-    "bytegrader-executor-systemd",
+    "bitsygrader",
+    "bitsygrader-executor-systemd",
 ]
 
 [[package]]
@@ -296,25 +296,8 @@ wheels = [
 ]
 
 [[package]]
-name = "bleach"
-version = "6.2.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "webencodings" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/76/9a/0e33f5054c54d349ea62c277191c020c2d6ef1d65ab2cb1993f91ec846d1/bleach-6.2.0.tar.gz", hash = "sha256:123e894118b8a599fd80d3ec1a6d4cc7ce4e5882b1317a7e1ba69b56e95f991f", size = 203083, upload-time = "2024-10-29T18:30:40.477Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/fc/55/96142937f66150805c25c4d0f31ee4132fd33497753400734f9dfdcbdc66/bleach-6.2.0-py3-none-any.whl", hash = "sha256:117d9c6097a7c3d22fd578fcd8d35ff1e125df6736f554da4e432fdd63f31e5e", size = 163406, upload-time = "2024-10-29T18:30:38.186Z" },
-]
-
-[package.optional-dependencies]
-css = [
-    { name = "tinycss2" },
-]
-
-[[package]]
-name = "bytegrader"
-version = "0.0.1"
+name = "bitsygrader"
+version = "0.0.3"
 source = { editable = "." }
 dependencies = [
     { name = "aiohttp" },
@@ -359,7 +342,7 @@ sentry = [
     { name = "sentry-sdk" },
 ]
 systemd = [
-    { name = "bytegrader-executor-systemd" },
+    { name = "bitsygrader-executor-systemd" },
 ]
 wasm-executor = [
     { name = "wasmtime" },
@@ -377,7 +360,7 @@ dev = [
 requires-dist = [
     { name = "aiohttp", specifier = ">=3.8.0" },
     { name = "apscheduler", specifier = ">=3.11.0" },
-    { name = "bytegrader-executor-systemd", marker = "extra == 'systemd'", editable = "executors/systemd" },
+    { name = "bitsygrader-executor-systemd", marker = "extra == 'systemd'", editable = "executors/systemd" },
     { name = "cachetools", specifier = ">=5.0.0" },
     { name = "colorama", specifier = ">=0.4.6" },
     { name = "cryptography", specifier = ">=3.4.8" },
@@ -422,15 +405,32 @@ dev = [
 ]
 
 [[package]]
-name = "bytegrader-executor-systemd"
-version = "0.1.0"
+name = "bitsygrader-executor-systemd"
+version = "0.0.4"
 source = { editable = "executors/systemd" }
 dependencies = [
-    { name = "bytegrader" },
+    { name = "bitsygrader" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "bytegrader", editable = "." }]
+requires-dist = [{ name = "bitsygrader", editable = "." }]
+
+[[package]]
+name = "bleach"
+version = "6.2.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "webencodings" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/76/9a/0e33f5054c54d349ea62c277191c020c2d6ef1d65ab2cb1993f91ec846d1/bleach-6.2.0.tar.gz", hash = "sha256:123e894118b8a599fd80d3ec1a6d4cc7ce4e5882b1317a7e1ba69b56e95f991f", size = 203083, upload-time = "2024-10-29T18:30:40.477Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/fc/55/96142937f66150805c25c4d0f31ee4132fd33497753400734f9dfdcbdc66/bleach-6.2.0-py3-none-any.whl", hash = "sha256:117d9c6097a7c3d22fd578fcd8d35ff1e125df6736f554da4e432fdd63f31e5e", size = 163406, upload-time = "2024-10-29T18:30:38.186Z" },
+]
+
+[package.optional-dependencies]
+css = [
+    { name = "tinycss2" },
+]
 
 [[package]]
 name = "cachetools"

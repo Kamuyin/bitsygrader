@@ -1,12 +1,12 @@
 # =============================================================================
-# JupyterHub Dockerfile for BYTEGrader deployment
+# JupyterHub Dockerfile for BitsyGrader deployment
 # Includes LTI Authenticator and DockerSpawner
 # =============================================================================
 
 FROM quay.io/jupyterhub/jupyterhub:5
 
-LABEL maintainer="BYTEGrader Team"
-LABEL description="JupyterHub configured for BYTEGrader with LTI authentication"
+LABEL maintainer="BitsyGrader Team"
+LABEL description="JupyterHub configured for BitsyGrader with LTI authentication"
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \

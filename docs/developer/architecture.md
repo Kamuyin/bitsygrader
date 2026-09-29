@@ -17,7 +17,7 @@ flowchart TB
         Server <-->|"files"| Files
     end
 
-    BG["BYTEGrader service"]
+    BG["BitsyGrader service"]
     State[("Database and assignment assets")]
     Executor["Isolated executor"]
 

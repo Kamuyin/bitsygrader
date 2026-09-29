@@ -72,7 +72,7 @@ const TopBar: React.FC = () => {
       <header style={topBarStyle}>
         <img 
           src={logo} 
-          alt="ByteGrader Logo" 
+          alt="BYTE Challenge"
           style={logoStyle}
         />
         <Avatar

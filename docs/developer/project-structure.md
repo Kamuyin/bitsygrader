@@ -1,10 +1,10 @@
 # Project structure
 
 ```text
-bytegrader/
-├── bytegrader/                 Python service and server extension
+bitsygrader/
+├── bitsygrader/                 Python service and server extension
 │   ├── autograde/              Queue, workers, and executor adapters
-│   ├── cli/                    `bytegrader serve` entry point
+│   ├── cli/                    `bitsygrader serve` entry point
 │   ├── config/                 Traitlets configuration
 │   ├── core/                   Auth, database, models, LTI, observability
 │   ├── extensions/lab/         Per-user Jupyter Server bridge

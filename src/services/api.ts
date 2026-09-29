@@ -8,14 +8,14 @@ import {
 
 export const apiService = {
   courses: {
-    getAll: () => requestAPI<CourseListResponse>('bytegrader/courses'),
+    getAll: () => requestAPI<CourseListResponse>('bitsygrader/courses'),
     
     create: (courseData: {
       label: string;
       title: string;
       lti_id: string;
       active: boolean;
-    }) => requestAPI<APIResponse>('bytegrader/courses/create', {
+    }) => requestAPI<APIResponse>('bitsygrader/courses/create', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(courseData)
@@ -25,14 +25,14 @@ export const apiService = {
       title?: string;
       lti_id?: string;
       active?: boolean;
-    }) => requestAPI<APIResponse>(`bytegrader/courses/${courseLabel}/update`, {
+    }) => requestAPI<APIResponse>(`bitsygrader/courses/${courseLabel}/update`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(courseData)
     }),
     
     delete: (courseLabel: string) => 
-      requestAPI(`bytegrader/courses/${courseLabel}/delete`, {
+      requestAPI(`bitsygrader/courses/${courseLabel}/delete`, {
         method: 'DELETE'
       })
   },
@@ -40,11 +40,11 @@ export const apiService = {
   assignments: {
     getAll: (courseId: string) => 
       requestAPI<AssignmentListResponseWithEnhancedState>(
-        `bytegrader/courses/${courseId}/assignments`
+        `bitsygrader/courses/${courseId}/assignments`
       ),
     
     create: (courseId: string, payload: any) =>
-      requestAPI<APIResponse>(`bytegrader/courses/${courseId}/assignments/create`, {
+      requestAPI<APIResponse>(`bitsygrader/courses/${courseId}/assignments/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -52,29 +52,29 @@ export const apiService = {
     
     fetch: (courseId: string, assignmentId: string, solution: boolean = false) =>
       requestAPI<APIResponse>(
-        `bytegrader/courses/${courseId}/assignments/${assignmentId}/fetch${solution ? '?solution=true' : ''}`
+        `bitsygrader/courses/${courseId}/assignments/${assignmentId}/fetch${solution ? '?solution=true' : ''}`
       ),
     
     submit: (courseId: string, assignmentId: string) =>
       requestAPI<APIResponse>(
-        `bytegrader/courses/${courseId}/assignments/${assignmentId}/submit`,
+        `bitsygrader/courses/${courseId}/assignments/${assignmentId}/submit`,
         { method: 'POST' }
       ),
     
     delete: (courseId: string, assignmentId: string) =>
       requestAPI<APIResponse>(
-        `bytegrader/courses/${courseId}/assignments/${assignmentId}/delete`,
+        `bitsygrader/courses/${courseId}/assignments/${assignmentId}/delete`,
         { method: 'DELETE' }
       )
   },
 
   auth: {
-    whoami: () => requestAPI<APIResponse>('bytegrader/auth/whoami')
+    whoami: () => requestAPI<APIResponse>('bitsygrader/auth/whoami')
   },
 
   generator: {
     generatePreview: (notebooks: any[], assets: any[]) =>
-      requestAPI<GeneratePreviewResponse>('bytegrader/generate_assignment', {
+      requestAPI<GeneratePreviewResponse>('bitsygrader/generate_assignment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ notebooks, assets })

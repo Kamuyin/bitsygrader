@@ -1,13 +1,13 @@
-site_name: BYTEGrader
+site_name: BitsyGrader
 site_description: Autograding for JupyterHub with LTI 1.3 integration
-site_url: https://kamuyin.github.io/bytegrader/
-repo_url: https://github.com/Kamuyin/bytegrader
-repo_name: Kamuyin/bytegrader
+site_url: https://kamuyin.github.io/bitsygrader/
+repo_url: https://github.com/Kamuyin/bitsygrader
+repo_name: Kamuyin/bitsygrader
 edit_uri: edit/master/docs/
 
 theme:
   name: material
-  favicon: assets/bytegrader_favicon.png
+  favicon: assets/bitsygrader_favicon.png
   features:
     - content.code.copy
     - content.tabs.link
@@ -43,11 +43,11 @@ nav:
       - LMS integrations:
           - Overview: user/lms/index.md
           - Moodle: user/lms/moodle.md
-      - Teaching with BYTEGrader:
+      - Teaching with BitsyGrader:
           - Instructor workflow: user/instructors.md
           - Authoring notebooks: user/authoring-notebooks.md
       - Student workflow: user/students.md
-      - Running BYTEGrader:
+      - Running BitsyGrader:
           - Configuration: user/configuration.md
           - LMS integration: user/administration/lti.md
           - Autograding: user/administration/autograding.md

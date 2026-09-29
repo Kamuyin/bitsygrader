@@ -1,6 +1,6 @@
 # HTTP API
 
-The central API is mounted below `JUPYTERHUB_SERVICE_PREFIX`. The Jupyter Server extension exposes a corresponding local API below `/bytegrader` and adapts file operations to the user workspace.
+The central API is mounted below `JUPYTERHUB_SERVICE_PREFIX`. The Jupyter Server extension exposes a corresponding local API below `/bitsygrader` and adapts file operations to the user workspace.
 
 All central endpoints require JupyterHub authentication. Successful JSON responses use:
 

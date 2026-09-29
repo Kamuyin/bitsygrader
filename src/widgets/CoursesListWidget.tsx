@@ -51,7 +51,7 @@ export class CoursesListWidget extends ReactWidget {
   constructor(app: JupyterFrontEnd) {
     super();
     this.app = app;
-    this.addClass('bytegrader-courses-list-widget');
+    this.addClass('bitsygrader-courses-list-widget');
     this.title.label = 'Courses';
     this.title.closable = true;
   }

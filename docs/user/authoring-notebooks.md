@@ -1,6 +1,6 @@
 # Authoring notebooks
 
-BYTEGrader follows nbgrader schema version 3 metadata. Assignment Creation Mode provides a UI for writing this metadata, but understanding the representation helps when reviewing notebooks or generating them programmatically.
+BitsyGrader follows nbgrader schema version 3 metadata. Assignment Creation Mode provides a UI for writing this metadata, but understanding the representation helps when reviewing notebooks or generating them programmatically.
 
 You can author a new notebook for an assignment by creating a new notebook (`.ipynb`-file) in your JupyterLab and then selecting **BYTE Grader → Assignment Creation Mode**. With this above each cell in the notebook a new bar will appear where you can select the type of cell for the nbgrader format as well as the score for the graded cells.
 

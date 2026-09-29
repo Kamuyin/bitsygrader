@@ -8,13 +8,13 @@ Only active courses and visible assignments are shown. Due dates and solution av
 
 ## Start an assignment
 
-Select **Start assignment**. BYTEGrader downloads the student notebooks and assets into:
+Select **Start assignment**. BitsyGrader downloads the student notebooks and assets into:
 
 ```text
 courses/<course-label>/<assignment-id>/
 ```
 
-The local assignment state changes from **Not started** to **In progress**. Work in the fetched notebooks and keep their original filenames and cell IDs; BYTEGrader uses both when matching your submission to the assignment.
+The local assignment state changes from **Not started** to **In progress**. Work in the fetched notebooks and keep their original filenames and cell IDs; BitsyGrader uses both when matching your submission to the assignment.
 
 Do not edit read-only cells or create a replacement notebook from scratch. Unrecognized cells are ignored during submission.
 

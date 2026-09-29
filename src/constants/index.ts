@@ -1,11 +1,14 @@
-export const PLUGIN_ID = '@bytechallenge/bytegrader:main';
+export const PLUGIN_ID = '@bytechallenge/bitsygrader:main';
+
+// Keep the familiar UI label; package and command identifiers use bitsygrader.
+export const EXTENSION_LABEL = 'BYTE Grader';
 
 export const COMMAND_IDS = {
-  openCoursesList: 'bytegrader:open-courses-list',
-  openAssignmentsList: 'bytegrader:open-assignments-list',
-  openInstructorTools: 'bytegrader:open-instructor-tools',
-  openStudentDashboard: 'bytegrader:open-student-dashboard',
-  toggleAssignmentCreationMode: 'bytegrader:toggle-assignment-creation-mode'
+  openCoursesList: 'bitsygrader:open-courses-list',
+  openAssignmentsList: 'bitsygrader:open-assignments-list',
+  openInstructorTools: 'bitsygrader:open-instructor-tools',
+  openStudentDashboard: 'bitsygrader:open-student-dashboard',
+  toggleAssignmentCreationMode: 'bitsygrader:toggle-assignment-creation-mode'
 } as const;
 
 export const ASSIGNMENT_STATUS = {

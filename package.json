@@ -1,7 +1,7 @@
 {
-  "name": "@bytechallenge/bytegrader",
+  "name": "@bytechallenge/bitsygrader",
   "version": "0.0.1",
-  "description": "Fork of Jupyter's nbgrader with full LTI support and optimized for JupyterHub with multiple courses and students",
+  "description": "BitsyGrader - JupyterHub notebook assignments and grading with LTI support",
   "keywords": [
     "jupyter",
     "jupyterlab",
@@ -26,7 +26,7 @@
     "build:lib": "tsc",
     "clean": "jlpm clean:lib",
     "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
-    "clean:labextension": "rimraf bytegrader/extensions/labextension",
+    "clean:labextension": "rimraf bitsygrader/extensions/labextension",
     "clean:all": "jlpm clean:lib && jlpm clean:labextension",
     "install:labextension": "jlpm build",
     "watch": "run-p watch:src watch:labextension",
@@ -92,12 +92,12 @@
           "pip"
         ],
         "base": {
-          "name": "bytegrader"
+          "name": "bitsygrader"
         }
       }
     },
     "extension": true,
-    "outputDir": "bytegrader/extensions/labextension",
+    "outputDir": "bitsygrader/extensions/labextension",
     "schemaDir": ""
   },
   "packageManager": "yarn@3.5.0"

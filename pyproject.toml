@@ -6,9 +6,9 @@ requires = [
 build-backend = "hatchling.build"
 
 [project]
-name = "bytegrader"
+name = "bitsygrader"
 version = "0.0.3"
-description = "BYTEGrader - JupyterHub assignment grading service"
+description = "BitsyGrader - JupyterHub assignment grading service"
 readme = "README.md"
 requires-python = ">=3.10"
 keywords = [
@@ -64,7 +64,7 @@ members = [
 ]
 
 [project.optional-dependencies]
-systemd = ["bytegrader-executor-systemd"]
+systemd = ["bitsygrader-executor-systemd"]
 
 wasm-executor = [
     "wasmtime>=35.0.0",
@@ -83,23 +83,21 @@ opentelemetry = [
 ]
 
 [project.scripts]
-bytegrader = "bytegrader.cli:main"
-
-[project.entry-points."jupyter_serverproxy_servers"]
-bytegrader = "bytegrader.extensions.hub:setup_server_proxy"
+bitsygrader = "bitsygrader.cli:main"
+bgrader = "bitsygrader.cli:main"
 
 [tool.uv.sources]
-bytegrader-executor-systemd = { workspace = true }
+bitsygrader-executor-systemd = { workspace = true }
 
 [tool.hatch.build]
 artifacts = [
-    "bytegrader/extensions/labextension/",
+    "bitsygrader/extensions/labextension/",
 ]
 
 [tool.hatch.build.targets.sdist]
 include = [
     "/etc",
-    "/bytegrader",
+    "/bitsygrader",
     "/src",
     "/style",
     "/*.*"
@@ -110,7 +108,7 @@ exclude = [
 
 [tool.hatch.build.targets.wheel.shared-data]
 "etc/jupyter/jupyter_server_config.d" = "etc/jupyter/jupyter_server_config.d"
-"bytegrader/extensions/labextension" = "share/jupyter/labextensions/@bytechallenge/bytegrader"
+"bitsygrader/extensions/labextension" = "share/jupyter/labextensions/@bytechallenge/bitsygrader"
 
 [tool.hatch.build.hooks.jupyter-builder]
 dependencies = [
@@ -118,15 +116,15 @@ dependencies = [
 ]
 build-function = "hatch_jupyter_builder.npm_builder"
 ensured-targets = [
-    "bytegrader/extensions/labextension/static/style.js",
-    "bytegrader/extensions/labextension/package.json",
+    "bitsygrader/extensions/labextension/static/style.js",
+    "bitsygrader/extensions/labextension/package.json",
 ]
 skip-if-exists = [
-    "bytegrader/extensions/labextension/static/style.js",
+    "bitsygrader/extensions/labextension/static/style.js",
 ]
 
 [tool.hatch.build.hooks.jupyter-builder.editable-build-kwargs]
-build_dir = "bytegrader/extensions/labextension"
+build_dir = "bitsygrader/extensions/labextension"
 source_dir = "src"
 build_cmd = "install:labextension"
 npm = [
@@ -168,14 +166,13 @@ name = "check changelog"
 cmd = "grep -q {new_version} CHANGELOG.md"
 
 [[tool.tbump.file]]
-src = "nbgrader/_version.py"
-version_template = '({major}, {minor}, {patch}, "{channel}", "{release}")'
+src = "bitsygrader/__init__.py"
 
 [[tool.tbump.file]]
 src = "pyproject.toml"
 
 [[tool.tbump.file]]
-src = "src/assignment_list/index.ts"
+src = "package.json"
 
 [[tool.tbump.field]]
 name = "channel"

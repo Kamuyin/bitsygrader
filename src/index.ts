@@ -9,9 +9,9 @@ import { Menu } from '@lumino/widgets';
 import { CoursesListWidget } from "./widgets/CoursesListWidget";
 import { AssignmentsListWidget } from "./widgets/AssignmentsListWidget";
 import { AssignmentModeManager } from './assignment-creation';
-import { PLUGIN_ID, COMMAND_IDS } from './constants';
+import { PLUGIN_ID, COMMAND_IDS, EXTENSION_LABEL } from './constants';
 
-const bytegraderPlugin: JupyterFrontEndPlugin<void> = {
+const bitsygraderPlugin: JupyterFrontEndPlugin<void> = {
     id: PLUGIN_ID,
     autoStart: true,
     requires: [IMainMenu],
@@ -48,11 +48,11 @@ const bytegraderPlugin: JupyterFrontEndPlugin<void> = {
         }
 
         const coursesListTracker = new WidgetTracker<MainAreaWidget<CoursesListWidget>>({
-            namespace: 'bytegrader-courses-list'
+            namespace: 'bitsygrader-courses-list'
         });
 
         const assignmentsListTracker = new WidgetTracker<MainAreaWidget<AssignmentsListWidget>>({
-            namespace: 'bytegrader-assignments-list'
+            namespace: 'bitsygrader-assignments-list'
         });
 
         let coursesListWidget: MainAreaWidget<CoursesListWidget> | null = null;
@@ -65,8 +65,8 @@ const bytegraderPlugin: JupyterFrontEndPlugin<void> = {
                 if (!coursesListWidget || coursesListWidget.isDisposed) {
                     const content = new CoursesListWidget(app);
                     coursesListWidget = new MainAreaWidget({ content });
-                    coursesListWidget.id = 'bytegrader-courses-list';
-                    coursesListWidget.addClass('bytegrader-mainarea-widget');
+                    coursesListWidget.id = 'bitsygrader-courses-list';
+                    coursesListWidget.addClass('bitsygrader-mainarea-widget');
                     coursesListWidget.title.label = 'My Courses';
                     coursesListWidget.title.caption = 'View and manage your courses';
                     coursesListWidget.title.closable = true;
@@ -99,8 +99,8 @@ const bytegraderPlugin: JupyterFrontEndPlugin<void> = {
                 if (!assignmentsListWidget || assignmentsListWidget.isDisposed) {
                     const content = new AssignmentsListWidget(app, courseId);
                     assignmentsListWidget = new MainAreaWidget({ content });
-                    assignmentsListWidget.id = 'bytegrader-assignments-list';
-                    assignmentsListWidget.addClass('bytegrader-mainarea-widget');
+                    assignmentsListWidget.id = 'bitsygrader-assignments-list';
+                    assignmentsListWidget.addClass('bitsygrader-mainarea-widget');
                     
                     assignmentsListWidget.title.label = 'Assignments';
                     
@@ -146,36 +146,36 @@ const bytegraderPlugin: JupyterFrontEndPlugin<void> = {
             });
         }
 
-        const bytegraderMenu = new Menu({ commands: app.commands });
-        bytegraderMenu.id = 'jp-mainmenu-bytegrader';
-        bytegraderMenu.title.label = 'BYTE Grader';
+        const bitsygraderMenu = new Menu({ commands: app.commands });
+        bitsygraderMenu.id = 'jp-mainmenu-bitsygrader';
+        bitsygraderMenu.title.label = EXTENSION_LABEL;
 
         if (isLabEnvironment || isNotebookTreePage) {
-            bytegraderMenu.addItem({
+            bitsygraderMenu.addItem({
                 command: COMMAND_IDS.openCoursesList,
                 type: 'command'
             });
 
-            bytegraderMenu.addItem({ 
+            bitsygraderMenu.addItem({
                 command: COMMAND_IDS.openAssignmentsList,
                 type: 'command'
             });
         }
 
         if (modeManager && (isLabEnvironment || isNotebookEditPage)) {
-            bytegraderMenu.addItem({ type: 'separator' });
-            bytegraderMenu.addItem({
+            bitsygraderMenu.addItem({ type: 'separator' });
+            bitsygraderMenu.addItem({
                 command: COMMAND_IDS.toggleAssignmentCreationMode,
                 type: 'command'
             });
         }
 
-        if (bytegraderMenu.items.length > 0) {
-            mainMenu.addMenu(bytegraderMenu);
+        if (bitsygraderMenu.items.length > 0) {
+            mainMenu.addMenu(bitsygraderMenu);
         }
 
         if (palette && (isLabEnvironment || isNotebookTreePage)) {
-            const category = 'BYTE Grader';
+            const category = EXTENSION_LABEL;
 
             palette.addItem({
                 command: COMMAND_IDS.openCoursesList,
@@ -191,25 +191,25 @@ const bytegraderPlugin: JupyterFrontEndPlugin<void> = {
         if (palette && modeManager) {
             palette.addItem({
                 command: COMMAND_IDS.toggleAssignmentCreationMode,
-                category: 'BYTE Grader'
+                category: EXTENSION_LABEL
             });
         }
 
         if (restorer) {
             restorer.restore(coursesListTracker, {
                 command: COMMAND_IDS.openCoursesList,
-                name: () => 'bytegrader-courses-list'
+                name: () => 'bitsygrader-courses-list'
             });
 
             restorer.restore(assignmentsListTracker, {
                 command: COMMAND_IDS.openAssignmentsList,
-                name: () => 'bytegrader-assignments-list'
+                name: () => 'bitsygrader-assignments-list'
             });
         }
 
-        console.debug('ByteGrader extension activated successfully!');
+        console.debug('BitsyGrader extension activated successfully!');
         console.debug(`Environment: Lab=${isLabEnvironment}, NotebookTree=${isNotebookTreePage}, NotebookEdit=${isNotebookEditPage}`);
     }
 };
 
-export default bytegraderPlugin;
+export default bitsygraderPlugin;

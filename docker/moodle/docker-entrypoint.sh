@@ -60,8 +60,8 @@ install_moodle() {
     local admin_user="${MOODLE_ADMIN_USER:-admin}"
     local admin_pass="${MOODLE_ADMIN_PASSWORD:-Admin123!}"
     local admin_email="${MOODLE_ADMIN_EMAIL:-admin@example.com}"
-    local site_name="${MOODLE_SITE_NAME:-BYTEGrader LMS}"
-    local site_shortname="${MOODLE_SITE_SHORTNAME:-bytegrader}"
+    local site_name="${MOODLE_SITE_NAME:-BitsyGrader LMS}"
+    local site_shortname="${MOODLE_SITE_SHORTNAME:-bitsygrader}"
     
     echo "Installing with:"
     echo "  Admin User: ${admin_user}"
@@ -73,7 +73,7 @@ install_moodle() {
         --agree-license \
         --fullname="${site_name}" \
         --shortname="${site_shortname}" \
-        --summary="Learning Management System for BYTEGrader" \
+        --summary="Learning Management System for BitsyGrader" \
         --adminuser="${admin_user}" \
         --adminpass="${admin_pass}" \
         --adminemail="${admin_email}"

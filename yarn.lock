@@ -23,9 +23,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@bytechallenge/bytegrader@workspace:.":
+"@bytechallenge/bitsygrader@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@bytechallenge/bytegrader@workspace:."
+  resolution: "@bytechallenge/bitsygrader@workspace:."
   dependencies:
     "@jupyter-notebook/application": ^7.2.0
     "@jupyter-notebook/tree": ^7.2.0

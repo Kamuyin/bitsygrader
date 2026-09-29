@@ -40,7 +40,7 @@ From the assignment list, open the creation wizard:
 
 ![Assignment review](../public/showcase_create_3.png)
 
-When LTI synchronization is enabled for the assignment, BYTEGrader creates an LMS line item whose maximum score is the total of all gradable cells.
+When LTI synchronization is enabled for the assignment, BitsyGrader creates an LMS line item whose maximum score is the total of all gradable cells.
 
 ## Manage published assignments
 

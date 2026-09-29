@@ -11,7 +11,7 @@ COPY style/ ./style/
 RUN yarn install --frozen-lockfile || yarn install
 RUN yarn build:lib
 
-COPY bytegrader/extensions/ ./bytegrader/extensions/
+COPY bitsygrader/extensions/ ./bitsygrader/extensions/
 
 # Build
 FROM python:3.11-slim AS python-builder
@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN corepack enable && corepack prepare yarn@3.5.0 --activate
 
 COPY pyproject.toml setup.py requirements.txt ./
-COPY bytegrader/ ./bytegrader/
+COPY bitsygrader/ ./bitsygrader/
 COPY etc/ ./etc/
 COPY src/ ./src/
 COPY style/ ./style/
@@ -50,7 +50,7 @@ RUN pip install build && python -m build --wheel
 FROM python:3.11-slim AS runtime
 
 LABEL maintainer="Kamuyin"
-LABEL description="BYTEGrader - JupyterHub assignment grading service"
+LABEL description="BitsyGrader - JupyterHub assignment grading service"
 LABEL version="0.0.1"
 
 ENV PYTHONUNBUFFERED=1 \
@@ -66,7 +66,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
-RUN groupadd -r bytegrader && useradd -r -g bytegrader bytegrader
+RUN groupadd -r bitsygrader && useradd -r -g bitsygrader bitsygrader
 
 # Copy the built wheel from builder
 COPY --from=python-builder /app/dist/*.whl /tmp/
@@ -78,13 +78,13 @@ RUN pip install --no-cache-dir /tmp/*.whl \
 
 # Create necessary directories
 RUN mkdir -p /app/data /app/assets /app/config \
-    && chown -R bytegrader:bytegrader /app
+    && chown -R bitsygrader:bitsygrader /app
 
 # Copy configuration example
-COPY example/bytegrader_config.py /app/config/bytegrader_config.py.example
+COPY example/bitsygrader_config.py /app/config/bitsygrader_config.py.example
 
 # Switch to non-root user
-USER bytegrader
+USER bitsygrader
 
 # Expose the default port
 EXPOSE 12345
@@ -94,4 +94,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
     CMD curl -f http://localhost:12345/auth/whoami || exit 1
 
 # Default command
-CMD ["bytegrader", "serve", "--config=/app/config/bytegrader_config.py"]
+CMD ["bitsygrader", "serve", "--config=/app/config/bitsygrader_config.py"]

@@ -12,7 +12,7 @@ clean:
 	find . -name "*.pyo" -delete 2>/dev/null || true
 	find . -name "*.egg-info" -exec rm -rf {} + 2>/dev/null || true
 	@echo "Cleaning built labextension..."
-	rm -rf bytegrader/labextension/ 2>/dev/null || true
+	rm -rf bitsygrader/extensions/labextension/ 2>/dev/null || true
 	rm -rf dist/ 2>/dev/null || true
 	@echo "Cleaning node modules..."
 	rm -rf node_modules 2>/dev/null || true
@@ -23,7 +23,7 @@ clean:
 	@echo "Clean completed!"
 
 build:
-	@echo "Building bytegrader..."
+	@echo "Building bitsygrader..."
 	@echo "Using package manager: $(PKG_MANAGER)"
 	@echo "Installing JavaScript dependencies..."
 	jlpm install
@@ -38,13 +38,13 @@ endif
 	@echo "Build completed!"
 
 install:
-	@echo "Installing bytegrader with $(PKG_MANAGER)..."
+	@echo "Installing bitsygrader with $(PKG_MANAGER)..."
 ifeq ($(PKG_MANAGER),uv)
 	uv pip install -e . --system --break-system-packages
 else
 	pip install -e .
 endif
 	@echo "Enabling Jupyter extensions..."
-	jupyter server extension enable bytegrader --sys-prefix
+	jupyter server extension enable bitsygrader --sys-prefix
 	jupyter labextension develop . --overwrite
 	@echo "Installation completed!"

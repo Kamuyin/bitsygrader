@@ -24,7 +24,7 @@ var/
 
 # built labextension
 tsconfig.tsbuildinfo
-bytegrader/extensions/labextension/
+bitsygrader/extensions/labextension/
 # Yarn cache
 .yarn/
 
@@ -67,7 +67,7 @@ target/
 
 # components stuff
 node_modules
-bytegrader/server_extensions/formgrader/static/components/
+bitsygrader/server_extensions/formgrader/static/components/
 
 conda-bld
 gh_api.sqlite

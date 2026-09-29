@@ -318,7 +318,7 @@ export class AssignmentsListWidget extends ReactWidget {
         super();
         this.app = app;
         this.courseId = courseId;
-        this.addClass('bytegrader-assignments-list-widget');
+        this.addClass('bitsygrader-assignments-list-widget');
         this.title.label = 'Assignments';
         this.title.caption = 'View and manage assignments';
         this.title.closable = true;

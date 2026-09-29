@@ -276,7 +276,7 @@ const CreateAssignmentWizard: React.FC<CreateAssignmentWizardProps> = ({
         try {
             const { notebooks, assets } = extractNotebooksAndAssets(assignmentData.fileSystem);
             const response = await requestAPI<GeneratePreviewResponse>(
-                'bytegrader/generate_assignment',
+                'bitsygrader/generate_assignment',
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -433,7 +433,7 @@ const CreateAssignmentWizard: React.FC<CreateAssignmentWizardProps> = ({
         };
         try {
             const response = await requestAPI<APIResponse<any>>(
-                `bytegrader/courses/${courseId}/assignments/create`,
+                `bitsygrader/courses/${courseId}/assignments/create`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

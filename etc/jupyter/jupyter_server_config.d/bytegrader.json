@@ -1,7 +1,0 @@
-{
-    "ServerApp": {
-        "jpserver_extensions": {
-            "bytegrader.extensions.lab": true
-        }
-    }
-}

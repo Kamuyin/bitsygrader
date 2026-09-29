@@ -5,7 +5,7 @@ The executor is selected with a dotted Python class path. Every executor impleme
 ## Simple executor
 
 ```python
-autograde.executor_class = "bytegrader.autograde.executors.simple.SimpleExecutor"
+autograde.executor_class = "bitsygrader.autograde.executors.simple.SimpleExecutor"
 ```
 
 `SimpleExecutor` calls Python `exec()` inside the service process. It is convenient for development and demonstrations but provides no isolation.
@@ -17,7 +17,7 @@ autograde.executor_class = "bytegrader.autograde.executors.simple.SimpleExecutor
 ## systemd executor
 
 ```python
-autograde.executor_class = "bytegrader.autograde.executors.systemd.SystemdExecutor"
+autograde.executor_class = "bitsygrader.autograde.executors.systemd.SystemdExecutor"
 ```
 
 Install the optional package with the `systemd` extra. It creates a per-job bundle and executes a notebook in a transient systemd unit using controls such as `DynamicUser`, `PrivateTmp`, `ProtectHome`, and `NoNewPrivileges`.
